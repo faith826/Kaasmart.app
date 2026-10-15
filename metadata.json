@@ -1,0 +1,6 @@
+{
+  "name": "KaaSmart - Digital Property Management Platform",
+  "description": "Discover, manage, and connect across properties with KaaSmart. Modern digital solutions for property owners, landlords, tenants, and managers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
