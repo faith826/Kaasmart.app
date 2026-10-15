@@ -1,8 +1,11 @@
 node_modules/
 build/
-dist/
 coverage/
 .DS_Store
 *.log
 .env*
 !.env.example
+
+# Note: dist/ is intentionally included for direct cPanel Git deployment
+# so that pre-built production files are immediately available on cPanel
+# without requiring Node.js/npm on shared hosting servers.

@@ -1,0 +1,27 @@
+---
+# cPanel Git Version Control Deployment Configuration
+# Documentation: https://docs.cpanel.net/cpanel/version-control/guide-to-git-deployment/
+#
+# When you click "Deploy HEAD Commit" in cPanel Git Version Control,
+# cPanel runs the commands defined under 'tasks' below.
+
+deployment:
+  tasks:
+    # 1. Define target deployment directory.
+    # Default is $HOME/public_html/ (the standard primary web root on cPanel).
+    # If deploying to an addon domain or subdomain, change to:
+    # export DEPLOYPATH=$HOME/kaasmart.app/
+    # or export DEPLOYPATH=$HOME/public_html/subfolder/
+    - export DEPLOYPATH=$HOME/public_html/
+
+    # 2. Ensure target deployment directory exists
+    - /bin/mkdir -p $DEPLOYPATH
+
+    # 3. If dist is missing and npm is available, build the project
+    - if [ ! -d "dist" ] && which npm >/dev/null 2>&1; then npm run build; fi
+
+    # 4. Copy all production built files to the web root
+    - /bin/cp -R dist/* $DEPLOYPATH
+
+    # 5. Ensure Apache .htaccess is copied for React routing and caching
+    - /bin/cp .htaccess $DEPLOYPATH 2>/dev/null || true
